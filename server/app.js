@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./db');
+var db = require('./db/index.js').dbConnection;
 
 // Middleware
 var morgan = require('morgan');
@@ -7,7 +7,6 @@ var parser = require('body-parser');
 
 // Router
 var router = require('./routes.js');
-
 var app = express();
 module.exports.app = app;
 
@@ -18,6 +17,12 @@ app.set("port", 3000);
 app.use(morgan('dev'));
 app.use(parser.json());
 
+db.connect();
+
+db.query('SELECT * FROM users', function(err, rows, fields) {
+  if (err) throw (err);
+  console.log("rows", rows[0].username);
+});
 // Set up our routes
 app.use("/classes", router);
 
