@@ -19,10 +19,6 @@ app.use(parser.json());
 
 db.connect();
 
-db.query('SELECT * FROM users', function(err, rows, fields) {
-  if (err) throw (err);
-  console.log("rows", rows[0].username);
-});
 // Set up our routes
 app.use("/classes", router);
 
@@ -34,4 +30,3 @@ if (!module.parent) {
   app.listen(app.get("port"));
   console.log("Listening on", app.get("port"));
 }
-
