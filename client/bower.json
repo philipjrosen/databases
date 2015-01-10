@@ -1,0 +1,22 @@
+{
+  "name": "Chatterbox Client",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wainage/2014-12-chatterbox-server",
+  "authors": [
+    "Hack Reactor Students <accounts@hackreactor.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "underscore": "~1.7.0"
+  }
+}
