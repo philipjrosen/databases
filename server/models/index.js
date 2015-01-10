@@ -4,7 +4,7 @@ var db = require('../db').dbConnection;
 module.exports = {
   messages: {
     get: function (callback) {
-      db.query('SELECT message, username FROM messages JOIN users ON messages.user_id=users.id;', function(err, rows, fields) {
+      db.query('SELECT username, message, createdAt, roomname FROM messages JOIN users ON messages.user_id=users.id JOIN rooms ON messages.room_id=rooms.id;', function(err, rows, fields) {
       if (err) throw (err);
       callback(rows);
       });
@@ -21,3 +21,4 @@ module.exports = {
 
 // console.log("username", rows[0].username);
 // console.log("message", rows[0].message);
+
