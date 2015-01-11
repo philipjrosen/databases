@@ -10,12 +10,10 @@ module.exports = {
       });
     }, // a function which produces all the messages
     post: function (message, callback) {
-      console.log("message.username", message.username);
       db.query('INSERT INTO messages (message, user_id, createdAt, room_id) values ("' + message.message + '", 21, STR_TO_DATE("1-01-2012", "%d-%m-%Y"), 1);',
         function (err, results, fields) {
         if (err) throw err;
         else {
-          console.log('message was added');
           callback();
         }
       });
@@ -39,12 +37,10 @@ module.exports = {
       });
     },
     post: function(user, callback) {
-      console.log('users.post', user);
       db.query("INSERT INTO users (username) values ('" + user.username + "');",
         function (err, results, fields) {
         if (err) throw err;
         else {
-          console.log('user was added');
           callback();
         }
       });

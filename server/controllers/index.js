@@ -6,11 +6,12 @@ module.exports = {
   messages: {
     get: function (req, res) {
       models.messages.get(function(data){
-        res.json({results: data});
+        res.json(data);
       })
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      models.messages.post(req.body, function(){
+      var message = req.body;
+      models.messages.post(message, function(){
         res.send("success");
       });
     } // a function which handles posting a message to the database

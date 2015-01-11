@@ -65,13 +65,14 @@ describe("Persistent Node Chat Server", function() {
 
   it("Should output all messages from the DB", function(done) {
     // Let's insert a message into the db
-       var queryString = "";
-       var queryArgs = [];
+    //   var queryString = 'INSERT INTO messages (message, user_id, createdAt, room_id) values (??, 21, STR_TO_DATE("1-01-2012", "%d-%m-%Y"), 1);';
+    //   var queryArgs = ['Men like you can never change!'];
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
 
-    dbConnection.query(queryString, queryArgs, function(err) {
+    dbConnection.query('INSERT INTO messages (message, user_id, createdAt, room_id) values ("Men like you can never change!", 21, STR_TO_DATE("1-01-2012", "%d-%m-%Y"), 1);', function(err, results) {
+
       if (err) { throw err; }
 
       // Now query the Node chat server and see if it returns
@@ -79,7 +80,7 @@ describe("Persistent Node Chat Server", function() {
       request("http://127.0.0.1:3000/classes/messages", function(error, response, body) {
         var messageLog = JSON.parse(body);
         expect(messageLog[0].message).to.equal("Men like you can never change!");
-        expect(messageLog[0].roomname).to.equal("main");
+        expect(messageLog[0].roomname).to.equal("room1");
         done();
       });
     });
